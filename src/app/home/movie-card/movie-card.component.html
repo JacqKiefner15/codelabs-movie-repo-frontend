@@ -1,0 +1,25 @@
+<div *ngIf="movie" class="card w-100">
+  <div class="card-body">
+      <div class="d-inline-flex w-100">
+        <div class="flex">
+            <h5 class="card-title">{{movie.title}} <span class="ml-2 card-year"><movie class="year"></movie></span></h5>
+            <h6 class="card-director">{{movie.director}}, {{movie.cast}}</h6>
+            <p class="card-description mt-4">{{movie.description}}</p>
+        </div>
+        <div class="ml-auto flex movie-img">
+            <img class="img img-fluid" [src]="movieImg" (error)="setDefaultPic()"/>
+        </div>
+    </div>
+        <div class="movie-info w-100 d-inline-flex">
+          <div class="flex">
+            <p>Rating: <span class="ml-2">{{movie.parental_rating}}</span></p>
+          </div>
+          <div class="flex ml-5">
+            <p>Duration: <span class="ml-2">{{movie.duration}}min.</span></p>
+          </div>
+          <div class="flex ml-5">
+            <p>Total Gross: <span class="ml-2">{{movie.total_gross | currency}}</span></p>
+          </div>
+        </div>
+  </div>"
+</div>

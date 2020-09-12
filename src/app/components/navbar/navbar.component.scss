@@ -1,0 +1,40 @@
+.navbar{
+    height: 85px;
+background: #222222 0% 0% no-repeat padding-box!important;
+box-shadow: 0px 3px 19px #00000041;
+    .nav-link {
+        color: white !important;
+        text-transform: uppercase;
+    }
+}
+
+.btn-flix-navbar {
+    border-color: #FF4436;
+    border-width: 2px;
+    border-style: solid;
+    border-radius: 25px;
+    color: white;
+    text-transform:uppercase;
+    font-weight: bold;
+    font-family: 'Raleway';
+
+
+}
+.btn-flix-navbar:hover,
+.btn-flix-navbar:not(:disabled):not(.disabled):active{
+    border-width: 2px;
+    background: transparent !important;
+    border-color: #FF4436;
+
+
+}
+
+.text-flix-red {
+    color: #FF4436;
+
+}
+
+.vl-red:after {
+    content: '|';
+    color: #FF4436;
+}
