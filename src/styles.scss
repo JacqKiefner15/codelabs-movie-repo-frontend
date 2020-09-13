@@ -1,4 +1,89 @@
-/* You can add global styles to this file, and also import other style files */
 
-/* Importing Bootstrap SCSS file. */
-@import '~bootstrap/scss/bootstrap';
+  /* You can add global styles to this file, and also import other style files */
+
+  /* Importing Bootstrap SCSS file. */
+  @import "~bootstrap/scss/bootstrap";
+
+  // Importing Needed Google Fonts
+  @import url("https://fonts.googleapis.com/css2?family=Bitter:wght@700&family=Montserrat&family=Raleway:ital,wght@0,500;0,700;1,500&display=swap");
+
+
+  // Notes on font usage
+  // font-family: 'Bitter', serif;
+  // available font-weights: 700/bold
+  // font-family: 'Montserrat', sans-serif;
+  // available font-weights: 400/regular
+  // font-family: 'Raleway', sans-serif;
+  // available font-weights: 500 italic, 500, 700/bold
+
+  // Overiding Boostrap Card Styles
+  .card {
+    box-shadow: 0px 3px 19px #0000000d;
+    border-radius: 5px;
+    border: none;
+  }
+  // Overiding Bootstrap Button Styles
+  .btn-primary {
+    font-family: "Raleway";
+    font-weight: bold;
+    font-size: 16px;
+    text-transform: uppercase;
+    color: white;
+    background: rgb(255, 68, 54);
+    border: rgb(255, 68, 54);
+    border-radius: 25px;
+    min-width: 100px;
+    min-height: 40px;
+  }
+  .btn-primary:hover,
+  .btn-primary:not(:disabled):not(.disabled):active {
+    color: white;
+    background: darken(rgb(255, 68, 54), 10%);
+    border: darken(rgb(255, 68, 54), 10%);
+    border-radius: 25px;
+  }
+  .btn-outline-primary {
+    font-family: "Raleway";
+    font-weight: bold;
+    font-size: 16px;
+    text-transform: uppercase;
+    color: rgb(255, 68, 54);
+    background: transparent;
+    border-color: rgb(255, 68, 54);
+    border-radius: 25px;
+    border-width: 2px;
+    min-width: 100px;
+    min-height: 40px;
+  }
+  .btn-outline-primary:hover,
+  .btn-outline-primary:not(:disabled):not(.disabled):active {
+    color: darken(rgb(255, 68, 54), 10%);
+    background: transparent;
+    border-color: darken(rgb(255, 68, 54), 10%);
+    border-radius: 25px;
+  }
+
+  // input overide
+  input,
+  .form-control {
+    border-radius: 25px !important;
+  }
+
+  // overides for small devices
+  @media (max-width: 576px) {
+    .form {
+      max-width: 95vw;
+    }
+  }
+
+  // overides for small devices
+  @media (min-width: 576px) {
+    .btn-primary, .btn-outline-primary {
+      min-width: 150px;
+      min-height: 40px;
+    }
+  }
+
+  html, body { height: 100%; }
+  body { margin: 0; font-family: Roboto, "Helvetica Neue", sans-serif; }
+
