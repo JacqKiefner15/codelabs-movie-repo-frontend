@@ -1,0 +1,41 @@
+
+
+  <div class="row">
+    <div class="col-12 mt-5 pt-lg-5">
+        <form class="form p-5 mt-lg-5" [formGroup]="loginForm">
+              <ngb-alert class="text-center" *ngIf="errorMsg" type="danger" (close)="errorMsg = null">{{ errorMsg }}
+              </ngb-alert>
+              <h2 class="mb-5">Login</h2>
+              <div class="form-group">
+                <label class="label">Email</label>
+                <input [ngClass]="{'is-invalid': hasError && loginForm.get('email').errors}" class="form-control"
+                  type="email" formControlName="email"
+                  placeholder="you@youremailaddress.com">
+                <label class="form-error" *ngIf="hasError && loginForm.get('email').errors">
+                  <span class="text-danger" *ngIf="loginForm.get('email').errors['required']" >
+                    Email is required!
+                  </span>
+                </label>
+              </div>
+              <div class="form-group">
+                <label class="label">Password</label>
+                <input [ngClass]="{'is-invalid': hasError && loginForm.get('password').errors}" class="form-control"
+                  type="password" formControlName="password"
+                  placeholder="xxxxxxxxx">
+                <label class="form-error" *ngIf="hasError && loginForm.get('password').errors">
+                  <span class="text-danger" *ngIf="loginForm.get('password').errors['required']" >
+                    Password is required!
+                  </span>
+                </label>
+              </div>
+              <div class="form-footer-btns mt-5 mb-2">
+                <button type="submit" class="btn btn-primary btn-block" (click)="submitForm()">Log In <fa-icon
+                    *ngIf="submitting" [icon]="['fas', 'spinner']" size="lg" class="ml-2 fa-spinner" spin="true">
+                  </fa-icon></button>
+              </div>
+              <div class="col-12 text-center mt-4">
+                <p class="form-bottom-p">Haven't registered? <a class="form-link" [routerLink]="['/signup']">Sign up</a></p>
+            </div>
+          </form>
+    </div>
+</div>

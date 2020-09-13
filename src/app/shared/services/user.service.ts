@@ -32,7 +32,15 @@ export class UserService {
     }
 
 
-  login() {}
+  login(params) {
+    return this.http.post<any>('${this.userApi}/login', params)
+    .pipe(
+      catchError(this.handleError),
+      map(res => {
+        debugger
+      })
+    )
+  }
 
   signup(params) {
     return this.http.post<any>('${this.userApi}/create', params)
@@ -47,9 +55,9 @@ export class UserService {
           return { success: true, user: newUser }
         }
       })
-
     )
   }
+
 
   logout() {}
   handleError(error) {
@@ -67,4 +75,3 @@ export class UserService {
 
 
   }
-}

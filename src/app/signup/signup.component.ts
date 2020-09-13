@@ -1,10 +1,10 @@
 import { User } from './../shared/services/models/user';
 import { UserService } from './../shared/services/user.service';
-import { LocalStorageService } from './../shared/services/local-storage.service';
 import { Component, OnDestroy, OnInit } from '@angular/core';
 import { FormBuilder, FormGroup, Validators } from '@angular/forms';
 import { MustMatch } from './must-match.validator'
 import { Subscription } from 'rxjs';
+import { Router } from '@angular/router';
 
 @Component({
   selector: 'app-signup',
@@ -21,20 +21,15 @@ export class SignupComponent implements OnInit, OnDestroy {
   private subs = new Subscription()
   constructor(
     private fb: FormBuilder,
+    private router: Router,
     private UserService: UserService,
-    private storageService: LocalStorageService
   ) { }
 
   ngOnInit(): void {
     this.createFormControls()
     this.createForm()
-    this.retrieveMyEmailFromStorage()
 
-  }
 
-  retrieveMyEmailFromStorage() {
-    const myEmail = this.storageService.getItem('myEmail')
-    console.log('myEmail = ', myEmail)
   }
 
   createFormControls() {
@@ -60,13 +55,11 @@ export class SignupComponent implements OnInit, OnDestroy {
 
 
   submitForm() {
-    debugger
     this.hasError = false
     this.submitting = true
     if (this.form.invalid) {
       this.hasError = true
       this.submitting = false
-      return
     }
       const form = this.form.value
       const params = {
@@ -77,20 +70,23 @@ export class SignupComponent implements OnInit, OnDestroy {
         password: form. password,
         password_confirmation: form.passwordConfirmation
 
-
-
       }
       this.subs.add(
         this.UserService.signup(params).subscribe(data => {
           if (data && data.success && data.user) {
             this.currentUser = data.user
-            debugger
-          }, error => {
+            this.submitting = false
+            this.router.navigate(['/home'])
+          }
+        },error => {
             if (error) {
-              debugger
+              console.log(error)
+              this.submitting = false
+              this.errorMsg = 'User  Already exists in this system! Please Login!'
             }
            })
       )
+
 
   }
 
