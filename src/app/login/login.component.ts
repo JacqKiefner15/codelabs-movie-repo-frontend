@@ -1,3 +1,4 @@
+import { User } from './../shared/services/models/user';
 import { UserService } from './../shared/services/user.service';
 import { Component, OnDestroy, OnInit } from '@angular/core';
 import { FormBuilder, FormGroup, Validators } from '@angular/forms';
@@ -15,6 +16,7 @@ export class LoginComponent implements OnInit, OnDestroy {
   submitting = false
   hasError = false
   errorMsg: string
+  currentUser: User
   private subs = new Subscription()
 
   constructor(
@@ -42,19 +44,30 @@ export class LoginComponent implements OnInit, OnDestroy {
   submitForm() {
     this.hasError = false
     this.submitting = true
+    this.errorMsg = null
     if (this.loginForm.invalid) {
       this.hasError = true
       this.submitting = false
+      this.router.navigate(['/home'])
       return
 
     }
     const form = this.loginForm.value
     const params = { email: form.email, password: form.password }
-    this.subs.add()
+    this.subs.add(
     this.userService.login(params).subscribe(data => {
-      debugger
+      if (data && data.success && data.user) {
+        this.currentUser = data.user
+        this.submitting = false
+
+      }
     }, error => {
-      debugger
+        if (error) {
+          console.log(error)
+          this.submitting = false
+          this.hasError = true
+          this.errorMsg = 'Email and Password combination do not exist in this system!'
+        }
       })
     )
   }

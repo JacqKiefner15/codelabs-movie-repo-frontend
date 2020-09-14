@@ -6,6 +6,7 @@ import { environment} from './../../../environments/environment.prod';
   import { BehaviorSubject, from, Observable, throwError } from 'rxjs';
 import { catchError, map } from 'rxjs/operators';
 import { faFileWord } from '@fortawesome/free-solid-svg-icons';
+import { Router } from '@angular/router';
 
 @Injectable({
   providedIn: 'root'
@@ -15,6 +16,7 @@ export class UserService {
   public currentUser: Observable<User>
   private userApi: string
   constructor(
+    private router: Router,
     private http: HttpClient,
     private storage: LocalStorageService
     ){
@@ -37,7 +39,15 @@ export class UserService {
     .pipe(
       catchError(this.handleError),
       map(res => {
-        debugger
+        if (res && res.token) {
+          const newUser = new User (res)
+          this.storage.setItem('accessTokeen', res.token)
+          this.storage.setItem('currentUser', newUser)
+          this.currentUserSubject.next(newUser)
+          return { success: true, user: newUser }
+        } else {
+          return { success: false, msg: 'Invalid Credentials!'}
+        }
       })
     )
   }
@@ -58,8 +68,32 @@ export class UserService {
     )
   }
 
+logoutUser() {
+  this.logout().subscribe( data => {
+    //logout was successful
+    if (data) {
+      this.removeCurrentUserAndRoute()
+    }
+  }, error => {
+    if (error) {
+      this.removeCurrentUserAndRoute()
+    }
+  })
+}
 
-  logout() {}
+  logout() {
+    return this.http.delete<any>('${this.userApi}/logout', {})
+  }
+
+  removeCurrentUserAndRoute(){
+    // set local storage vars as undefined, remove, and then route back
+    this.storage.setItem('currentUser', undefined)
+    this.storage.setItem('accessToken', undefined)
+    this.currentUserSubject.next(null)
+    this.storage.removeItem('currentUser')
+    this.storage.removeItem('accessToken')
+    this.router.navigate(['/login'])
+  }
   handleError(error) {
      let returnError
      if (error.error instanceof ErrorEvent) {
