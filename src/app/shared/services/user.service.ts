@@ -57,6 +57,7 @@ export class UserService {
     .pipe(
       catchError(this.handleError),
       map(res => {
+        debugger
         if (res && res.token) {
           const newUser = new User (res)
           this.storage.setItem('accessTokeen', res.token)
@@ -85,7 +86,7 @@ logoutUser() {
     return this.http.delete<any>('${this.userApi}/logout', {})
   }
 
-  removeCurrentUserAndRoute(){
+  removeCurrentUserAndRoute() {
     // set local storage vars as undefined, remove, and then route back
     this.storage.setItem('currentUser', undefined)
     this.storage.setItem('accessToken', undefined)
@@ -94,6 +95,7 @@ logoutUser() {
     this.storage.removeItem('accessToken')
     this.router.navigate(['/login'])
   }
+
   handleError(error) {
      let returnError
      if (error.error instanceof ErrorEvent) {
@@ -105,7 +107,5 @@ logoutUser() {
       returnError = { statusCode: error.error.statusCode, message: 'Error Code: ${error.status}\nMessage: ${error.message}'}
       }
       return throwError(returnError)
-     }
-
-
+   }
   }
