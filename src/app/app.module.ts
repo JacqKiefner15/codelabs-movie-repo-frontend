@@ -22,6 +22,7 @@ import { MovieCardComponent } from './home/movie-card/movie-card.component';
 import { SignupComponent } from './signup/signup.component';
 import { FormsModule, ReactiveFormsModule } from '@angular/forms';
 import { LoginComponent } from './login/login.component';
+import { SingleMovieComponent } from './movies/single-movie/single-movie.component';
 
 
 
@@ -34,7 +35,8 @@ import { LoginComponent } from './login/login.component';
     HomeComponent,
     MovieCardComponent,
     SignupComponent,
-    LoginComponent
+    LoginComponent,
+    SingleMovieComponent
   ],
   imports: [
     BrowserModule,

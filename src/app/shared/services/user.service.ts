@@ -43,7 +43,7 @@ export class UserService {
       map(res => {
         if (res && res.token) {
           const newUser = new User (res);
-          this.storage.setItem('accessTokeen', res.token);
+          this.storage.setItem('accessToken', res.token);
           this.storage.setItem('currentUser', newUser);
           this.currentUserSubject.next(newUser);
           return { success: true, user: newUser };

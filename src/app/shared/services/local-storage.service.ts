@@ -14,6 +14,7 @@ export class LocalStorageService {
     }
   }
 
+  
   getItem(key: string) {
     if (isPlatformBrowser(this.platformId)) {
       if (localStorage.getItem(key)) {
