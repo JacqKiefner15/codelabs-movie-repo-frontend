@@ -9,7 +9,7 @@ const app = express();
 
 app.use(forceSsl);
 
-app.use(express.static('./dist/codelabs-movie-frontend'));
+app.use(express.static('/dist/codelabs-movie-frontend'));
 
 app.get('/*', (req,res)=>{
   res.sendFile(path.join(_dirname, '/dist/codelabs-movie-frontend'))
