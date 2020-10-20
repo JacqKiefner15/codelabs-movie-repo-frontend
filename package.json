@@ -3,12 +3,13 @@
   "version": "0.0.0",
   "scripts": {
     "ng": "ng",
-    "start": "ng serve",
+    "start": "node server.js",
     "build": "ng build",
     "test": "ng test",
     "lint": "ng lint",
     "e2e": "ng e2e",
-    "heroku-postbuild": "ng build --prod=true --configuration=production"
+    "heroku-postbuild": "npm build --prod=true --configuration=production",
+    "build: prod": "ng build --prod --aot --build-optimizer=true --configuration=production"
   },
   "private": true,
   "dependencies": {
