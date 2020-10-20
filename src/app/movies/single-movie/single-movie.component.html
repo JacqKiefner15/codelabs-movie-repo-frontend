@@ -1,1 +1,70 @@
-<p>single-movie works!</p>
+<div class="container mb-3">
+  <div class="row mt-5">
+      <div class="col-12 mt-5 mb-5">
+          <div *ngIf="movie" class="card p-4">
+              <div class="d-inline-flex w-100">
+                  <div class="flex">
+                      <h5 class="movie-title">{{movie.title}}</h5>
+                      <h6 class="release-date">Released:<span class="rd-bold ml-2">{{movie.release_date | date: 'MMMM dd, yyyy'}}</span></h6>
+                      <h6 class="movie-description mt-4">{{movie.description}}</h6>
+                      <div class="d-inline-flex w-100 mt-4">
+                          <p class="flex movie-rating">Rating: <span class="mr-bold ml-2">{{movie.parental_rating}}</span></p>
+                          <p class="flex movie-duration ml-5">Duration: <span class="md-bold ml-2">{{movie.duration}}</span></p>
+                      </div>
+                  </div>
+                  <div class="ml-auto flex movie-img">
+                      <img class="img img-fluid" [src]="movieImg" (error)="setDefaultPic()">
+                  </div>
+              </div>
+              <div class="row">
+                  <div class="col-12 mt-4 mb-4">
+                      <p class="desc-text">Cast</p>
+                      <hr>
+                      <p class="movie-text">{{movie.cast}}</p>
+                  </div>
+                  <div class="col-12 mt-4 mb-4">
+                      <p class="desc-text">Director</p>
+                      <hr>
+                      <p class="movie-text">{{movie.director}}</p>
+                  </div>
+                  <div class="col-12 mt-4 mb-4">
+                      <p class="desc-text">Total Gross</p>
+                      <hr>
+                      <p class="movie-text">{{movie.total_gross | currency}}</p>
+                  </div>
+                  <div class="col-12 mt-4 mb-4">
+                      <p class="desc-text">Average Rating</p>
+                      <hr>
+                      <app-input-star-rating>[rating]="avgMovieRating" [starCount]="5" [padding]="0" [size]="24"</app-input-star-rating>
+
+                  </div>
+                  <div class="col-12 mt-4 mb-4">
+                      <p class="desc-text">Reviews</p>
+                      <app-review-card>[reviews]="reviews" [movieId]="movie.id"</app-review-card>
+                  </div>
+              </div>
+          </div>
+      </div>
+      <div *ngIf="currentUser" class="col-12 mb-5 d-inline-flex">
+          <div class="flex">
+              <button class="btn btn-primary" (click)="routeToWriteReview()">Write Review
+                  <fa-icon [icon]="['fas', 'star']" size="sm" class="ml-2 text-white"></fa-icon>
+              </button>
+          </div>
+          <div *ngIf="currentUser.id === movie.user_id" class="flex ml-auto">
+              <div class="w-100 d-inline-flex">
+                  <div class="flex">
+                      <button class="btn btn-outline-primary" (click)="editMovie()">Edit Movie
+                          <fa-icon [icon]="['fas', 'pen']" size="sm" class="ml-2"></fa-icon>
+                      </button>
+                  </div>
+                  <div class="flex ml-4">
+                      <button class="btn btn-outline-primary" (click)="deleteMovie()">Delete Movie
+                          <fa-icon [icon]="['fas', 'trash-alt']" size="sm" class="ml-2"></fa-icon>
+                      </button>
+                  </div>
+              </div>
+          </div>
+      </div>
+  </div>
+</div>

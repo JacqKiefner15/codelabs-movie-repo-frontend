@@ -1,0 +1,10 @@
+
+
+  <div class="col-12 d-inline-flex star-rating" [ngClass]="{'p-0': padding === 0}">
+    <div class="flex" *ngFor="let ratingId of ratingArr; index as i" [id]="'star_'+i">
+        <fa-icon [icon]="['fas', showIcon(i)]" [ngStyle]="getSizeStyles()"></fa-icon>
+    </div>
+    <div class="ml-4 flex rating mt-2">
+        <p>({{rating}} Stars)</p>
+    </div>
+  </div>

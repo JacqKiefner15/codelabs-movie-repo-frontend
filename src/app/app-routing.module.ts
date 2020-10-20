@@ -1,3 +1,4 @@
+import { MovieReviewsComponent } from './movies/movie-reviews/movie-reviews.component';
 import { SingleMovieComponent } from './movies/single-movie/single-movie.component';
 import { LoginComponent } from './login/login.component';
 import { SignupComponent } from './signup/signup.component';
@@ -27,14 +28,15 @@ const routes: Routes = [
   component: LoginComponent,
   pathMatch: 'full'
 },
+
 {
   path: 'movies/:id',
   component: SingleMovieComponent,
   pathMatch: 'full'
 },
 {
-  path: 'movies/:id',
-  component: SingleMovieComponent,
+  path: 'movies/:id/reviews',
+  component: MovieReviewsComponent,
   pathMatch: 'full'
 }
 ];

@@ -1,0 +1,40 @@
+.movie-img {
+  margin-top: -50px;
+}
+.movie-title {
+  font-family: 'Bitter';
+  font-weight: bold;
+  font-size: 38px;
+  color: #FF4436;
+}
+
+.release-date, .movie-rating, .movie-duration {
+  font-family: 'Raleway';
+  font-weight: bold;
+  font-size: 16px;
+  color: #CCCCCC;
+  span {
+      color: #777777;
+  }
+}
+
+.movie-description {
+  font-family: 'Raleway';
+  font-weight: 500;
+  font-size: 18px;
+  color: #777777;
+}
+
+.desc-text {
+  font-family: 'Raleway';
+  font-weight: bold;
+  font-size: 24px;
+  color: #CCCCCC;
+}
+
+.movie-text {
+  font-family: 'Raleway';
+  font-weight: bold;
+  font-size: 16px;
+  color: #777777;
+}

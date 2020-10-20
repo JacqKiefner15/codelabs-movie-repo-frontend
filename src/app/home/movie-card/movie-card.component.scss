@@ -37,7 +37,14 @@
 
 .movie-info {
   p {
-      span {
+        font-family: "Railway";
+        font-weight: 500;
+        font-size: 16px;
+        color: #cccccc,
+        span {
+          font-weight:bold;
+          columns: #777777;
+
 
       }
   }

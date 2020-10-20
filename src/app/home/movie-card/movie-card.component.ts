@@ -29,6 +29,6 @@ export class MovieCardComponent implements OnInit, OnChanges {
   }
 
   routeToViewMovie(id: number) {
-    this.router.navigate([`/movies${id}`])
+    this.router.navigate([`/movies/${id}`])
   }
 }

@@ -23,6 +23,12 @@ import { SignupComponent } from './signup/signup.component';
 import { FormsModule, ReactiveFormsModule } from '@angular/forms';
 import { LoginComponent } from './login/login.component';
 import { SingleMovieComponent } from './movies/single-movie/single-movie.component';
+import { EmailFormComponent } from './email-form/email-form.component';
+import { InputStarRatingComponent } from './movies/input-star-rating/input-star-rating.component';
+import { ReviewCardComponent } from './movies/review-card/review-card.component';
+import { TimeAgoPipe } from './shared/pipes/time-ago.pipe';
+import { MovieReviewsComponent } from './movies/movie-reviews/movie-reviews.component';
+
 
 
 
@@ -36,7 +42,12 @@ import { SingleMovieComponent } from './movies/single-movie/single-movie.compone
     MovieCardComponent,
     SignupComponent,
     LoginComponent,
-    SingleMovieComponent
+    SingleMovieComponent,
+    EmailFormComponent,
+    InputStarRatingComponent,
+    ReviewCardComponent,
+    TimeAgoPipe,
+    MovieReviewsComponent
   ],
   imports: [
     BrowserModule,
